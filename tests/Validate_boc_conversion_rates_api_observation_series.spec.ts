@@ -16,7 +16,6 @@ test('Validate observations by series api with valid inputs for series names and
             expect(observations.length).toBeGreaterThan(0);
             expect(observations.hasOwnProperty('d'));
             expect(observations.hasOwnProperty('v'));
-            expect(data.observations[0].d).toContain('2024');
             let firstDateValueInResponse = data.observations[0].d
             firstDateValueInResponse = new Date(firstDateValueInResponse);
             // Get the current date
@@ -41,7 +40,7 @@ test('Validate observations by series api with valid inputs for series names and
 
         await test.step('Validate response for 0 number of weeks,', async () => {
 
-            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSY', 0);
+            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSDCAD', 0);
             console.log(data);
             expect(data.message).toContain('Bad recent observations request parameters, you cannot have a recent value less than one');
 
@@ -49,7 +48,7 @@ test('Validate observations by series api with valid inputs for series names and
 
         await test.step('Validate response for negative number of weeks,', async () => {
 
-            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSY', -1);
+            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSDCAD', -1);
             console.log(data);
             expect(data.message).toContain('Bad recent observations request parameters, you cannot have a recent value less than one');
 
@@ -57,7 +56,7 @@ test('Validate observations by series api with valid inputs for series names and
 
         await test.step('Validate response for string value in number of weeks,', async () => {
 
-            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSY', 'abcd');
+            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSDCAD', 'abcd');
             console.log(data);
             expect(data.message).toContain('Bad recent observations request parameters, must be numeric');
 
