@@ -33,11 +33,29 @@ test('Validate observations by series api', async ({ page }) => {
 
     })
 
-    await test.step('Validate response for invalid number of weeks,', async () => {
+    await test.step('Validate response for 0 number of weeks,', async () => {
 
         const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSY', 0);
         console.log(data);
         expect(data.message).toContain('Bad recent observations request parameters, you cannot have a recent value less than one');
 
     })
+
+    await test.step('Validate response for negative number of weeks,', async () => {
+
+        const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSY', -1);
+        console.log(data);
+        expect(data.message).toContain('Bad recent observations request parameters, you cannot have a recent value less than one');
+
+    })
+
+    await test.step('Validate response for string value in number of weeks,', async () => {
+
+        const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSY', 'abcd');
+        console.log(data);
+        expect(data.message).toContain('Bad recent observations request parameters, must be numeric');
+
+    })
+
+
 })
