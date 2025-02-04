@@ -3,7 +3,7 @@ import { getApiResponseForObservationBySeriesForRecentWeeks } from '../utilities
 
 test('Validate observations by series api', async ({ page }) => {
     const numberOfWeeks = 10;
-    const seriesNames = ['FXCADUSD', 'FXUSDCAD', 'FXAUDCAD', 'FXBRLCAD'];
+    const seriesNames = ['FXCADUSD', 'FXEURCAD','FXUSDCAD', 'FXAUDCAD', 'FXBRLCAD'];
 
     await test.step('Validate observations api for valid series names', async () => {
 
