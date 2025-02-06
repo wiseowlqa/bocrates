@@ -38,6 +38,14 @@ test('Validate observations by series api with valid inputs for series names and
 
         })
 
+        await test.step('Validate response for empty value for series names,', async () => {
+
+            const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, '', numberOfWeeks);
+            console.log(data);
+            expect(data.message).toContain('Series json not found');
+
+        })
+
         await test.step('Validate response for 0 number of weeks,', async () => {
 
             const data = await getApiResponseForObservationBySeriesForRecentWeeks(page, 'FXUSDCAD', 0);
