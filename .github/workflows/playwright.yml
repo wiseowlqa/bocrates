@@ -25,9 +25,9 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v2
       if: ${{ !cancelled() }}
       with:
         name: monocart-report
-        path: monocart-report/monocart
+        path: monocart-report/
         retention-days: 30
